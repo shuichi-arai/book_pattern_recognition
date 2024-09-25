@@ -1,0 +1,14 @@
+学習用データを正規分布に従う乱数で生成し
+各手法で学習します．
+
+	LSM.py	      ---- 最小二乗法で解く
+
+	SDM.py        ---- 最急降下法で解く
+
+	WidrowHoff.py ---- Widrow-Hoffで解く
+
+いずれの方法も
+  -s SEED, --seed SEED  random seed
+  -n NUM, --num NUM     number of data
+のように，乱数の種SEEDと，データ数NUMを指定できます．
+乱数の種とデータ数を揃えれば，これら3つの手法の結果同士を比較できます．
