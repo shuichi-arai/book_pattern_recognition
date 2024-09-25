@@ -295,7 +295,7 @@ zip fileは解凍しておきましょう．
 --------------------------
 サンプルプログラム Directory 構成
 --------------------------
-
+```
 .
 ├── 0.Readme.txt
 ├── Chap2.perceptron
@@ -401,3 +401,4 @@ zip fileは解凍しておきましょう．
 │   ├── 0.Readme.txt
 │   └── SVM.py
 └── requirements.txt
+```
