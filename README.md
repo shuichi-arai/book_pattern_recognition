@@ -79,9 +79,9 @@ Let's Try!の詳細な指示なども，0.Readme.txtに書いてあるので注�
 
        > python3 --version
 
-   でpython3のversionを確かめて、3.8.10 よりも新しかったら(3.8.10はOK) 古いpython3もinstallする必要があります。
-   簡単なのはpyenvをinstallすることで、これをinstallしてpython3.8.10 を使えるようにしてから、以下の操作をしてください。
-   詳しい方法はネット上に沢山情報があるのでここでは省きます。
+   でpython3のversionを確かめて，3.8.10 よりも新しかったら(3.8.10はOK) 古いpython3もinstallする必要があります．
+   簡単なのはpyenvをinstallすることで，これをinstallしてpython3.8.10 を使えるようにしてから，以下の操作をしてください．
+   詳しい方法はネット上に沢山情報があるのでここでは省きます．
 
       
    では，venvを用いてプログラムを動かしてみましょう．
