@@ -72,7 +72,18 @@ Let's Try!の詳細な指示なども，0.Readme.txtに書いてあるので注�
 
    そこで，最近は，仮想環境を用いるのが当たり前になってきています．
    仮想環境も様々提案されているのですが，ここではpython defalutの venv を用いることにします．
-   
+
+   さらにもう1点pythonには問題があります．
+   ご存じのようにpythonのversion2系とpythonのversion3系では動作互換性がないのですが，
+   同様にpython3.8.10を境にpythonで良く用いるmatplotlibやnumpyなどの互換性がありません．
+
+       > python3 --version
+
+   でpython3のversionを確かめて、3.8.10 よりも新しかったら(3.8.10はOK) 古いpython3もinstallする必要があります。
+   簡単なのはpyenvをinstallすることで、これをinstallしてpython3.8.10 を使えるようにしてから、以下の操作をしてください。
+   詳しい方法はネット上に沢山情報があるのでここでは省きます。
+
+      
    では，venvを用いてプログラムを動かしてみましょう．
 
   
