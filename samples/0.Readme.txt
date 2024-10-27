@@ -1,0 +1,197 @@
+--------------------------------------------------------------------
+ビジュアルテキスト　パターン認識   森北出版
+サンプルプログラム (https://github.com/shuichi-arai/book_pattern_recognition)
+--------------------------------------------------------------------
+本書で扱うパターン認識は，統計的モデルに基づく認識手法です．
+これらの手法は学習用データを用いて逐次的に学習を行っていくため，
+その逐次的に変化する様子をサンプルプログラムで動的に体験することで，
+本書の理解が深まると思い，様々なサンプルプログラムを用意しました．
+
+----------
+ はじめに
+----------
+
+windowsでもlinuxでも動作するので，pythonでsample programは書きました．
+
+pythonのversion 3で書いてあります．
+（version 2では動作しませんので気をつけてください．）
+
+各章の項目に応じてサンプルプログラムを置いてあります．
+0.Readme.txt というファイルに説明を書きましたので，まずそれを読んでください．
+
+Let's Try!の詳細な指示なども，0.Readme.txtに書いてあるので注意してください．
+
+---------------------
+ まずは環境のチェック
+---------------------
+1. ターミナルを開きます．
+
+2. コマンドラインで以下のように打ちます．
+
+    > python3 --version
+
+   python3がinstallされていれば，installされているpythonのversionが表示されます．
+   例えば，
+
+    > Python 3.11.10
+
+   と表示されたら，あなたの python3 のversionは 3.11.10ということです．
+
+3. pythonがinstallされていないなら，まずはversion3のpythonをinstallしてください．
+   windowsやLinuxによってinstall法は異なりますが，ネット上に情報は豊富なので
+   ここではinstall法は割愛します．
+
+
+3. プログラムの実行は全て，
+
+    > python3 <プログラム名.py>
+    
+   で実行できます．
+   また，
+
+    > python3 <プログラム名.py> -h
+
+   で使用方法が表示されるように作ってあります．
+
+4. より深い理解のために役に立つことを考えて作ったので実用性は低いと思いますが，
+   できるだけ，本書の内容と対応するように書いてありますので，
+   内容を眺めてみるのも良いでしょう．
+   プログラムに関する質問などはご容赦ください．
+
+
+5. 提供するサンプルプログラムでは以下のmoduleを使っていますが，
+   moduleにはversionがあり，それらは頻繁にupdateされるので，
+   module version間の関係で動作が不安定になったりする問題をpythonは抱えています．
+
+    -----------------------------
+    numpy
+    scipy
+    matplotlib
+    pandas
+    -----------------------------
+
+   そこで，最近は，仮想環境を用いるのが当たり前になってきています．
+   仮想環境も様々提案されているのですが，ここではpython defalutの venv を用いることにします．
+   
+   では，venvを用いてプログラムを動かしてみましょう．
+
+   1.How2RunSamples.txt に続きます．
+   ^^^^^^^^^^^^^^^^^^^^
+
+
+
+
+
+--------------------------
+サンプルプログラム Directory 構成
+--------------------------
+
+.
+├── 0.Readme.txt
+├── 1.How2RunSamples.txt
+├── Chap2.perceptron
+│   ├── 0.Readme.txt
+│   ├── LetsTry2-1
+│   │   ├── 0.Readme.txt
+│   │   ├── LetsTry2-1.py
+│   │   └── result.LetsTry2-1.png
+│   ├── LetsTry2-2
+│   │   ├── 0.Readme.txt
+│   │   └── LetsTry2-2.py
+│   ├── perceptron.1D
+│   │   ├── 0.Readme.txt
+│   │   └── perceptron_1D.py
+│   └── perceptron.2D
+│       ├── 0.Readme.txt
+│       └── perceptron_2D.py
+├── Chap3.LSM_SDM_WidrowHoff
+│   ├── 0.Fig
+│   │   └── sampleData.svg
+│   ├── 0.Readme.txt
+│   ├── 1.LetsTry3-1
+│   │   ├── 0.Readme.txt
+│   │   ├── LetsTry3-1.LSM.py
+│   │   ├── LetsTry3-1.SDM.py
+│   │   └── LetsTry3-1.WidrowHoff.py
+│   ├── 2.LSM_SDM_WidrowHoff
+│   │   ├── 0.Readme.txt
+│   │   ├── LSM.py
+│   │   ├── SDM.py
+│   │   └── WidrowHoff.py
+│   ├── 3.Widrow-Hoff.Gender
+│   │   ├── 0.Readme.txt
+│   │   ├── Pattern
+│   │   │   ├── genderPattern2learn.dat
+│   │   │   ├── genderPattern2learn.female.dat
+│   │   │   ├── genderPattern2learn.male.dat
+│   │   │   └── genderPattern2recog.dat
+│   │   └── WidrowHoff.Gender.py
+│   └── 4.Widrow-Hoff.Digits
+│       ├── 0.Readme.txt
+│       ├── Pattern
+│       │   ├── pattern2learn.dat
+│       │   ├── pattern2learn.kinds.dat
+│       │   ├── pattern2recog.dat
+│       │   └── pattern2recog.kinds.dat
+│       ├── WidrowHoff.Digits.py
+│       └── showPattern.py
+├── Chap4.MAPinference
+│   ├── 0.Readme.txt
+│   ├── 1.MAP_estimation.py
+│   ├── 2.Bayesian_updating.py
+│   ├── 2.sample.png
+│   ├── fig
+│   │   ├── False.png
+│   │   ├── False.svg
+│   │   ├── True.png
+│   │   ├── True.svg
+│   │   ├── arrow.png
+│   │   └── arrow.svg
+│   └── showFont.py
+├── Chap5.MLinference
+│   ├── 0.Readme.txt
+│   ├── 1.MaximumLikelihood.py
+│   ├── data
+│   │   ├── score.csv
+│   │   ├── score_all.csv
+│   │   └── score_all.xlsx
+│   └── distribution.py
+├── Chap6.BayesianInference
+│   ├── 0.Readme.txt
+│   ├── 1.show_Beta_slider.py
+│   ├── 2.show_Dir_slider.py
+│   ├── 3.show_NormInvGam_slider.py
+│   ├── 4.show_NormInvWishart.py
+│   ├── 5.ML_MAP_Bayes_multivariate_discrete.py
+│   ├── 6.ML_MAP_Bayes_univariate_continuous.py
+│   └── distribution.py
+├── Chap7.MAPdiscriminantBoundary
+│   ├── 0.Readme.txt
+│   ├── 1.example2.py
+│   ├── 1.example3.py
+│   └── 2.example.py
+├── Chap8.NN
+│   ├── 0.Readme.txt
+│   ├── 1.Classification_or_Regression
+│   │   ├── XOR.2class.classification.py
+│   │   ├── fittingFunction.regression.py
+│   │   └── twoLayerNeuralNetwork.py -> ../twoLayerNeuralNetwork.py
+│   ├── 2.Gender.2class.classification.py
+│   ├── 3.Digits.10class.classification.py
+│   ├── data.digits
+│   │   ├── pattern2learn.dat
+│   │   ├── pattern2learn.kinds.dat
+│   │   ├── pattern2recog.dat
+│   │   └── pattern2recog.kinds.dat
+│   ├── data.gender
+│   │   ├── genderPattern2learn.dat
+│   │   ├── genderPattern2learn.female.dat
+│   │   ├── genderPattern2learn.male.dat
+│   │   └── genderPattern2recog.dat
+│   └── twoLayerNeuralNetwork.py
+├── Chap9.SVM
+│   ├── 0.Readme.txt
+│   └── SVM.py
+├── README.md
+└── requirements.txt
+

@@ -1,0 +1,231 @@
+===========================================================
+「パターン認識」
+
+仮想環境(venv)を用いたSample programsの動かし方
+===========================================================
+
+※  以下，全てTerminal上でのKeyboard操作です．
+　 "ファイルブラウザ"では操作できませんので，"マウス"は手から離しましょう．
+
+-----------------------------------------------------------
+-1. Graphic用ライブラリのinstall
+-----------------------------------------------------------
+python3で図を描画するためにmatplotlibを用います．
+そのために必要なpackageをまずinstallします．
+これはOS毎に方法が異なります．
+Ubuntu:   > apt install python3-tk
+SuSE:     > zypper install python3-tk
+Windows(Anaconda): conda install tk
+などなど．
+
+-----------------------------------------------------------
+0. 仮想環境のroot directoryとして使いたいdirectoryを作成
+-----------------------------------------------------------
+自分が，仮想環境を作りたいdirectory名を決めて，そのdirectoryを作成します．
+
+例えば自分のhome directory (~/) の下に，lectures という directoryを作って，
+そこに，本書「パターン認識」の資料を置こうと決めた場合には，
+
+    > mkdir ~/lectures
+
+と打ち, そのdirectoryに移動するには
+
+    > cd ~/lectures
+
+と打ちます．
+
+
+-----------------------------------------------------------
+1. 「パターン認識」用の新しい仮想環境の作成
+-----------------------------------------------------------
+
+新しい仮想環境は　"python3 -m venv <仮想環境名>" で作成できます．
+
+例えば，ここでは<仮想環境名>として<patrec> とすると
+
+    > python3 -m venv patrec
+
+で仮想環境"patrec"を作ることができました．
+確認のために"ls"で確認しましょう．
+
+    > ls
+
+今指定した，仮想環境名"patrec"というdirectoryが見えるはずです．
+
+    > cd patrec
+
+と打って，「パターン認識」用のdirectoryに移動します．
+
+
+-----------------------------------------------------------
+2.仮想環境の有効化
+-----------------------------------------------------------
+
+今作成した仮想環境に仮想環境を有効化するcommandがあります．
+確かめるために，
+
+    > ls ./bin/
+
+と打ってみましょう．
+activate というfileが見えればOKです．
+
+では，早速それを実行します．
+
+    > source ./bin/activate
+
+何も生じないような気がしますが，よく見てください．
+command promptの先頭に "(patrec)" という環境名が表示されています．
+
+この環境名が表示されている間は，「仮想環境内に居ます」．← ※ 大切！！
+
+仮想環境を抜けるときには
+
+    > deactivate
+
+です．command promptから仮想環境名が消えたことを必ず確認してください．← ※ 大切
+
+
+-----------------------------------------------------------
+3. InstallされているPackageの表示
+-----------------------------------------------------------
+
+仮想環境内では，最初は何もpackageはありません．
+では，それを確かめましょう．
+
+    > pip list
+
+と打つと
+
+    Package    Version
+    ---------- -------
+    pip        24.0
+    setuptools 65.5.0
+
+と表示され，最低限必要なpackageのみがinstallされた状態であることが分かります．
+
+もしも，
+    [notice] A new release of pip is available: 24.0 -> 24.2
+    [notice] To update, run: pip install --upgrade pip
+のように新しいpipがあるよ！と言われたら
+その下にupgradeする方法が書かれていますので実行しておきます．
+    (例）> pip install --upgrade pip
+        
+        さてpipがupgradeされたかを，もう１度 pip list を実行して確認しておきましょう．
+
+
+-----------------------------------------------------------
+4. サンプルプログラムのコピー
+-----------------------------------------------------------
+あとは，順次必要なpackageをinstallして，program を書き，実行すれば良いのですが，
+あるprogramをどの仮想環境で実行したのかが分からなくならないように管理しましょう．
+簡単なのは，例えば，作成した環境下にファイルを置くことです．
+
+例えば，"どこか" に book_pattern_recognition-master.zip というsource archive があるなら，それを patrec directory以下に置くわけです．
+
+    > cd ./patrec/
+    > mv ~/どこか/book_pattern_recognition-master.zip ./
+
+
+zip fileは解凍しておきましょう．
+
+    > unzip ./book_pattern_recognition-master.zip
+
+解凍したdirectoryがあるかを確認しておきます．
+
+    > ls
+
+と打ったら "./book_pattern_recognition-master/" というdirectoryが見えるはずです．
+
+    > cd ./book_pattern_recognition-master/
+
+と打って，解凍したdirectoryに移動しましょう．
+
+
+-----------------------------------------------------------
+5. Package再構築
+-----------------------------------------------------------
+色々なPackageをinstallして，それらを使わせてもらえるので，
+自分でprogramをほとんど書かなくて良いのがPythonの便利な点です．
+
+しかし，pythonのpackageは常にupdateされていて，versionの異なるpackageだと動作が保証されない（できない）という問題点があります．
+
+なので，必ずprogramが動作したときのpackage群のversion情報を記憶しておく必要があります．
+
+それが requirements.txt で，あなたが現在居るdirectoryに用意してあります．
+
+中身を覗いてみましょう．
+
+    > cat requirements.txt
+
+で見えるのが，必要なpackageとそのversionです．
+
+    matplotlib==3.9.2
+    numpy==2.1.2
+    pandas==2.2.3
+    scipy==1.14.1
+
+では，これらのpackage群を一度にinstallするにはどうしたらよいかというと
+
+    > pip install -r requirements.txt
+
+でできます．
+では，installできたかを確認しましょう．
+
+    > pip list
+
+    Package         Version
+    --------------- -----------
+    contourpy       1.3.0
+    cycler          0.12.1
+    fonttools       4.54.1
+    kiwisolver      1.4.7
+    matplotlib      3.9.2
+    numpy           2.1.2
+    packaging       24.1
+    pandas          2.2.3
+    pillow          11.0.0
+    pip             24.2
+    pyparsing       3.2.0
+    python-dateutil 2.9.0.post0
+    pytz            2024.2
+    scipy           1.14.1
+    setuptools      65.5.0
+    six             1.16.0
+    tzdata          2024.2
+
+
+ちゃんとinstallできました．
+
+
+-----------------------------------------------------------
+6. これで準備ができました．
+-----------------------------------------------------------
+まず，
+
+    > cd ./book_pattern_recognition-master/
+    
+でsample program群の場所に移動して，lsで見ると
+
+    ./Chap2.perceptron/  
+    ./Chap3.LSM_SDM_WidrowHoff/  
+    ./Chap4.MAPinference/
+    ./Chap5.MLinference/
+    ./Chap6.BayesianInference/  
+    ./Chap7.MAPdiscriminantBoundary/
+    ./Chap8.NN/  
+    ./Chap9.SVM/
+
+というdirectoryが見えるはずです．
+各directoryに"0.Readme.txt"が置いてありますので，あとはそれを読んで実行してください．
+
+-----------------------------------------------------------
+7. 仮想環境から抜ける
+-----------------------------------------------------------
+仮想環境を抜けるときには
+
+    > deactivate
+
+です．コマンドプロンプトから仮想環境名が消えたことを必ず確認してください．← ※ 大切
+
+これを忘れると，『ずーっと，仮想環境内に居ることになります』ので，注意してください．
+      ^^^^^^^^
