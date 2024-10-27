@@ -33,9 +33,9 @@ Let's Try!の詳細な指示なども，0.Readme.txtに書いてあるので注�
    python3がinstallされていれば，installされているpythonのversionが表示されます．
    例えば，
 
-    > Python 3.6.15
+    > Python 3.11.10
 
-   と表示されたら，あなたの python3 のversionは 3.6.15ということです．
+   と表示されたら，あなたの python3 のversionは 3.11.10ということです．
 
 3. pythonがinstallされていないなら，まずはversion3のpythonをinstallしてください．
    windowsやLinuxによってinstall法は異なりますが，ネット上に情報は豊富なので
@@ -72,18 +72,7 @@ Let's Try!の詳細な指示なども，0.Readme.txtに書いてあるので注�
 
    そこで，最近は，仮想環境を用いるのが当たり前になってきています．
    仮想環境も様々提案されているのですが，ここではpython defalutの venv を用いることにします．
-
-   さらにもう1点pythonには問題があります．
-   ご存じのようにpythonのversion2系とpythonのversion3系では動作互換性がないのですが，
-   同様にpython3.8.10を境にpythonで良く用いるmatplotlibやnumpyなどの互換性がありません．
-
-       > python3 --version
-
-   でpython3のversionを確かめて，3.8.10 よりも新しかったら(3.8.10はOK) 古いpython3もinstallする必要があります．
-   簡単なのはpyenvをinstallすることで，これをinstallしてpython3.8.10 を使えるようにしてから，以下の操作をしてください．
-   詳しい方法はネット上に沢山情報があるのでここでは省きます．
-
-      
+   
    では，venvを用いてプログラムを動かしてみましょう．
 
   
@@ -183,14 +172,17 @@ command promptの先頭に "(patrec)" という環境名が表示されていま
 
     Package    Version
     ---------- -------
-    pip        20.0.2
-    setuptools 44.1.1
+    pip        24.0
+    setuptools 65.5.0
 
 と表示され，最低限必要なpackageのみがinstallされた状態であることが分かります．
 
-もしも，"WARNING: You are using pip version 20.0.2; however, version 21.3.1 is available." のように新しいpipがあるよ！と言われたら
+もしも，
+    [notice] A new release of pip is available: 24.0 -> 24.2
+    [notice] To update, run: pip install --upgrade pip
+のように新しいpipがあるよ！と言われたら
 その下にupgradeする方法が書かれていますので実行しておきます．
-    (例）> python3 -m pip install --upgrade pip
+    (例）> pip install --upgrade pip
         
         さてpipがupgradeされたかを，もう１度 pip list を実行して確認しておきましょう．
 
@@ -241,6 +233,11 @@ zip fileは解凍しておきましょう．
 
 で見えるのが，必要なpackageとそのversionです．
 
+    matplotlib==3.9.2
+    numpy==2.1.2
+    pandas==2.2.3
+    scipy==1.14.1
+
 では，これらのpackage群を一度にinstallするにはどうしたらよいかというと
 
     > pip install -r requirements.txt
@@ -251,20 +248,25 @@ zip fileは解凍しておきましょう．
     > pip list
 
     Package         Version
-    --------------- -------
-    cycler          0.11.0
-    kiwisolver      1.3.1
-    matplotlib      3.2.0
-    numpy           1.19.5
-    pandas          1.1.5
-    Pillow          8.4.0
-    pip             21.3.1
-    pyparsing       3.0.9
-    python-dateutil 2.8.2
-    pytz            2022.5
-    scipy           1.5.4
-    setuptools      44.1.1
+    --------------- -----------
+    contourpy       1.3.0
+    cycler          0.12.1
+    fonttools       4.54.1
+    kiwisolver      1.4.7
+    matplotlib      3.9.2
+    numpy           2.1.2
+    packaging       24.1
+    pandas          2.2.3
+    pillow          11.0.0
+    pip             24.2
+    pyparsing       3.2.0
+    python-dateutil 2.9.0.post0
+    pytz            2024.2
+    scipy           1.14.1
+    setuptools      65.5.0
     six             1.16.0
+    tzdata          2024.2
+
 
 ちゃんとinstallできました．
 
@@ -392,11 +394,11 @@ zip fileは解凍しておきましょう．
 ├── Chap8.NN
 │   ├── 0.Readme.txt
 │   ├── 1.Classification_or_Regression
-│   │   ├── XOR.classification.py
+│   │   ├── XOR.2class.classification.py
 │   │   ├── fittingFunction.regression.py
-│   │   └── neuralnet.py
-│   ├── 2.NN.Gender.py
-│   ├── 3.NN.Digits.py
+│   │   └── twoLayerNeuralNetwork.py -> ../twoLayerNeuralNetwork.py
+│   ├── 2.Gender.2class.classification.py
+│   ├── 3.Digits.10class.classification.py
 │   ├── data.digits
 │   │   ├── pattern2learn.dat
 │   │   ├── pattern2learn.kinds.dat
@@ -407,7 +409,7 @@ zip fileは解凍しておきましょう．
 │   │   ├── genderPattern2learn.female.dat
 │   │   ├── genderPattern2learn.male.dat
 │   │   └── genderPattern2recog.dat
-│   └── neuralnet.py
+│   └── twoLayerNeuralNetwork.py
 ├── Chap9.SVM
 │   ├── 0.Readme.txt
 │   └── SVM.py
